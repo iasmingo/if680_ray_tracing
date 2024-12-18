@@ -6,11 +6,14 @@ class Ponto3:
         self.x = x
         self.y = y
         self.z = z
+    
+    def __repr__(self):
+        return f"Ponto3({self.x}, {self.y}, {self.z})"
 
     def __add__(self, other):
         if isinstance(other, Vetor3):
             return Ponto3(self.x + other.x, self.y + other.y, self.z + other.z)
-        raise TypeError("Pode apenas adicionar Vetor3 a Ponto3")
+        raise TypeError("Permitido somar apenas Ponto3 a Vetor3")
 
     def __sub__(self, other):
         if isinstance(other, Ponto3):
@@ -18,10 +21,22 @@ class Ponto3:
         elif isinstance(other, Vetor3):
             return Ponto3(self.x - other.x, self.y - other.y, self.z - other.z)
         else:
-            raise TypeError("Pode apenas subtrair Ponto3 de Ponto3 ou Vetor3 de Ponto3")
+            raise TypeError("Permitido subtrair apenas Ponto3 de Ponto3 ou Vetor3 de Ponto3")
 
-    def __repr__(self):
-        return f"Ponto3({self.x}, {self.y}, {self.z})"
+    def dist(self, other):
+        if isinstance(other, Ponto3):
+            dx = self.x - other.x
+            dy = self.y - other.y
+            dz = self.z - other.z
+            return (dx**2 + dy**2 + dz**2)**(1/2)
+        else:
+            raise TypeError("Argumento deve ser outro ponto")
+
+    def to(self, other):
+        if isinstance(other, Point3):
+            return Vector3(p.x - self.x, p.y - self.y, p.z - self.z)
+        else:
+            raise TypeError("Argumento deve ser outro ponto")
 
 
 class Vetor3:
