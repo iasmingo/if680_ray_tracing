@@ -45,6 +45,9 @@ class Vetor3:
         self.y = y
         self.z = z
 
+    def __repr__(self):
+        return f"Vetor3({self.x}, {self.y}, {self.z})"
+        
     def __add__(self, other):
         if isinstance(other, Vetor3):
             return Vetor3(self.x + other.x, self.y + other.y, self.z + other.z)
@@ -87,6 +90,3 @@ class Vetor3:
         if mag == 0:
             raise ValueError("Não é possível normalizar um vetor nulo")
         return self / mag
-
-    def __repr__(self):
-        return f"Vetor3({self.x}, {self.y}, {self.z})"
